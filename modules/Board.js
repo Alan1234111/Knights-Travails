@@ -4,9 +4,15 @@ import Graph from "./Graph.js";
 class Board {
   constructor() {
     this.board = this.createBoard();
-    this.knight = new Knight(0, 0);
+    this.knight = new Knight(0, 0, 4, 6);
     this.graph = new Graph(64);
 
+    this.addBoardVertex();
+    console.log(this.knight.startingPostion, this.knight.endPosition);
+    this.knightMoves(this.knight.startingPostion, this.knight.endPosition);
+  }
+
+  addBoardVertex() {
     // Add vertex then add all Edges on every vertex
     for (let i = 0; i < this.board.length; i++) {
       this.graph.addVertex(this.board[i]);
@@ -46,7 +52,34 @@ class Board {
         table.push(`${[i, j]}`);
       }
     }
+    console.log(table);
 
     return table;
   }
+
+  knightMoves(start, end) {
+    const paths = [];
+    const visited = new Set();
+    const queue = [];
+    queue.push([start, [start]]);
+
+    while (queue.length > 0) {
+      let [current, path] = queue.shift();
+      visited.add(current);
+      if (current == end) {
+        paths.push(path);
+      }
+
+      const neighbors = this.graph.AdjList.get(current);
+      for (let pos of neighbors) {
+        if (!visited.has(pos)) {
+          queue.push([pos, [...path, pos]]);
+        }
+      }
+    }
+    console.log(`Fastest Routes from ${start} to ${end}`);
+    paths.forEach((element) => console.log(element));
+  }
 }
+
+const board = new Board();
