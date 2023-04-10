@@ -97,6 +97,7 @@ class Board {
     this.tiles.forEach((tile) => {
       tile.innerHTML = "";
       tile.classList.remove("active");
+      tile.classList.remove("visited");
     });
 
     this.knight.startingPostion = null;
