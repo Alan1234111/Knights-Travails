@@ -4,6 +4,8 @@
   --btn-color: #44403c;
   --color-dark: #44403c;
   --color-light: #f5f5f4;
+  --end-travail-color: #e34234;
+  --visited-travail: green;
 }
 
 * {
@@ -103,4 +105,12 @@
 #column-6 div:nth-child(even),
 #column-7 div:nth-child(odd) {
   background-color: var(--color-light);
+}
+
+.board div.active {
+  background-color: var(--end-travail-color) !important;
+}
+
+.visited {
+  background-color: var(--visited-travail) !important;
 }
