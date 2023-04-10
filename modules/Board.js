@@ -6,10 +6,21 @@ class Board {
     this.board = this.createBoard();
     this.knight = new Knight(0, 0, 4, 6);
     this.graph = new Graph(64);
-
     this.addBoardVertex();
-    console.log(this.knight.startingPostion, this.knight.endPosition);
-    this.knightMoves(this.knight.startingPostion, this.knight.endPosition);
+
+    this.placeKnightBtn = document.getElementById("place");
+    this.randomKnightBtn = document.getElementById("random");
+    this.endBtn = document.getElementById("end");
+    this.travailBtn = document.getElementById("travail");
+    this.clearBtn = document.getElementById("clear");
+
+    this.placeKnightBtn.addEventListener("click", this.placeKnight);
+    this.randomKnightBtn.addEventListener("click", this.placeKnightRandom);
+    this.endBtn.addEventListener("click", this.placeEndPosition);
+    this.travailBtn.addEventListener("click", this.travail);
+    this.clearBtn.addEventListener("click", this.clearBoard);
+
+    // this.knightMoves(this.knight.startingPostion, this.knight.endPosition);
   }
 
   addBoardVertex() {
