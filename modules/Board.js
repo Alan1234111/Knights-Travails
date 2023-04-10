@@ -4,10 +4,13 @@ import Graph from "./Graph.js";
 class Board {
   constructor() {
     this.board = this.createBoard();
-    this.knight = new Knight(0, 0, 4, 6);
+    this.knight = new Knight();
     this.graph = new Graph(64);
+
     this.addBoardVertex();
 
+    this.mode = "";
+    this.tiles = document.querySelectorAll(".column div");
     this.placeKnightBtn = document.getElementById("place");
     this.randomKnightBtn = document.getElementById("random");
     this.endBtn = document.getElementById("end");
@@ -63,7 +66,6 @@ class Board {
         table.push(`${[i, j]}`);
       }
     }
-    console.log(table);
 
     return table;
   }
@@ -88,9 +90,107 @@ class Board {
         }
       }
     }
-    console.log(`Fastest Routes from ${start} to ${end}`);
-    paths.forEach((element) => console.log(element));
+    return paths[0];
   }
+
+  clearBoard = () => {
+    this.tiles.forEach((tile) => {
+      tile.innerHTML = "";
+      tile.classList.remove("active");
+    });
+
+    this.knight.startingPostion = null;
+    this.knight.endPosition = null;
+  };
+
+  #clearKnight() {
+    this.tiles.forEach((tile) => {
+      tile.innerHTML = "";
+    });
+  }
+
+  #clearEnd() {
+    this.tiles.forEach((tile) => {
+      tile.classList.remove("active");
+    });
+  }
+
+  #clearVisited() {
+    this.tiles.forEach((tile) => {
+      tile.classList.remove("visited");
+    });
+  }
+
+  placeKnight = () => {
+    this.mode = "placeKnight";
+
+    this.tiles.forEach((tile) =>
+      tile.addEventListener("click", () => {
+        this.renderPositions(tile, tile.dataset.column, tile.dataset.row);
+      })
+    );
+  };
+
+  placeKnightRandom = () => {
+    this.mode = "placeRandomKnight";
+    const randomRow = Math.floor(Math.random() * 8);
+    const randomCol = Math.floor(Math.random() * 8);
+
+    const tile = document.querySelector(`.column div[data-row="${randomRow}"][data-column="${randomCol}"]`);
+    this.renderPositions(tile, randomCol, randomRow);
+  };
+
+  createKnight(tile) {
+    const knight = document.createElement("img");
+    knight.src = "img/knight-chess.svg";
+    knight.id = "knight";
+    tile.appendChild(knight);
+  }
+
+  renderPositions(tile, row, column) {
+    if (this.mode == "endPosition") {
+      this.#clearEnd();
+      this.knight.endPosition = `${[row, column]}`;
+      tile.classList.add("active");
+    } else if (this.mode == "placeKnight") {
+      this.#clearKnight();
+      this.knight.startingPostion = `${[row, column]}`;
+      this.createKnight(tile);
+    } else {
+      this.#clearKnight();
+      this.knight.startingPostion = `${[row, column]}`;
+      this.createKnight(tile);
+    }
+  }
+
+  placeEndPosition = () => {
+    this.mode = "endPosition";
+
+    this.tiles.forEach((tile) =>
+      tile.addEventListener("click", () => {
+        this.renderPositions(tile, tile.dataset.column, tile.dataset.row);
+      })
+    );
+  };
+
+  travail = () => {
+    if (this.knight.startingPostion == null || this.knight.endPosition == null) return;
+    this.#clearVisited();
+    const moves = this.knightMoves(this.knight.startingPostion, this.knight.endPosition);
+    let interval = 1000;
+    moves.forEach((move, index) => {
+      setTimeout(() => {
+        const posArr = move.split(",");
+        const x = parseInt(posArr[0]);
+        const y = parseInt(posArr[1]);
+
+        const tile = document.querySelector(`.column div[data-row="${y}"][data-column="${x}"]`);
+        this.#clearKnight();
+        this.createKnight(tile);
+        tile.classList.add("visited");
+      }, index * interval);
+    });
+  };
 }
 
 const board = new Board();
