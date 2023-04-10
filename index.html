@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Knights Travails</title>
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet" />
+    <!-- styling -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="options">
+        <h1>Knight Travails</h1>
+        <button class="btn" id="place">PLACE KNIGHT</button>
+        <button class="btn" id="random">CREATE RANDOM KNIGHT</button>
+        <button class="btn" id="end">SELECT END</button>
+        <button class="btn" id="travail">TRAVAIL</button>
+        <button class="btn" id="clear">CLEAR</button>
+        <a class="github-link" href="https://github.com/Alan1234111/Knights-Travails"><img src="img/github-icon.svg" alt="" /> Alan</a>
+      </div>
+
+      <div class="board">
+        <div class="column" id="column-0">
+          <div data-column="0" data-row="0"></div>
+          <div data-column="0" data-row="1"></div>
+          <div data-column="0" data-row="2"></div>
+          <div data-column="0" data-row="3"></div>
+          <div data-column="0" data-row="4"></div>
+          <div data-column="0" data-row="5"></div>
+          <div data-column="0" data-row="6"></div>
+          <div data-column="0" data-row="7"></div>
+        </div>
+        <div class="column" id="column-1">
+          <div data-column="1" data-row="0"></div>
+          <div data-column="1" data-row="1"></div>
+          <div data-column="1" data-row="2"></div>
+          <div data-column="1" data-row="3"></div>
+          <div data-column="1" data-row="4"></div>
+          <div data-column="1" data-row="5"></div>
+          <div data-column="1" data-row="6"></div>
+          <div data-column="1" data-row="7"></div>
+        </div>
+        <div class="column" id="column-2">
+          <div data-column="2" data-row="0"></div>
+          <div data-column="2" data-row="1"></div>
+          <div data-column="2" data-row="2"></div>
+          <div data-column="2" data-row="3"></div>
+          <div data-column="2" data-row="4"></div>
+          <div data-column="2" data-row="5"></div>
+          <div data-column="2" data-row="6"></div>
+          <div data-column="2" data-row="7"></div>
+        </div>
+        <div class="column" id="column-3">
+          <div data-column="3" data-row="0"></div>
+          <div data-column="3" data-row="1"></div>
+          <div data-column="3" data-row="2"></div>
+          <div data-column="3" data-row="3"></div>
+          <div data-column="3" data-row="4"></div>
+          <div data-column="3" data-row="5"></div>
+          <div data-column="3" data-row="6"></div>
+          <div data-column="3" data-row="7"></div>
+        </div>
+        <div class="column" id="column-4">
+          <div data-column="4" data-row="0"></div>
+          <div data-column="4" data-row="1"></div>
+          <div data-column="4" data-row="2"></div>
+          <div data-column="4" data-row="3"></div>
+          <div data-column="4" data-row="4"></div>
+          <div data-column="4" data-row="5"></div>
+          <div data-column="4" data-row="6"></div>
+          <div data-column="4" data-row="7"></div>
+        </div>
+        <div class="column" id="column-5">
+          <div data-column="5" data-row="0"></div>
+          <div data-column="5" data-row="1"></div>
+          <div data-column="5" data-row="2"></div>
+          <div data-column="5" data-row="3"></div>
+          <div data-column="5" data-row="4"></div>
+          <div data-column="5" data-row="5"></div>
+          <div data-column="5" data-row="6"></div>
+          <div data-column="5" data-row="7"></div>
+        </div>
+        <div class="column" id="column-6">
+          <div data-column="6" data-row="0"></div>
+          <div data-column="6" data-row="1"></div>
+          <div data-column="6" data-row="2"></div>
+          <div data-column="6" data-row="3"></div>
+          <div data-column="6" data-row="4"></div>
+          <div data-column="6" data-row="5"></div>
+          <div data-column="6" data-row="6"></div>
+          <div data-column="6" data-row="7"></div>
+        </div>
+        <div class="column" id="column-7">
+          <div data-column="7" data-row="0"></div>
+          <div data-column="7" data-row="1"></div>
+          <div data-column="7" data-row="2"></div>
+          <div data-column="7" data-row="3"></div>
+          <div data-column="7" data-row="4"></div>
+          <div data-column="7" data-row="5"></div>
+          <div data-column="7" data-row="6"></div>
+          <div data-column="7" data-row="7"></div>
+        </div>
+      </div>
+    </div>
+    <script src="modules/Board.js" type="module"></script>
+  </body>
+</html>
